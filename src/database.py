@@ -8,7 +8,7 @@ conn.row_factory = sqlite3.Row
 cursor = conn.cursor()
 
 cursor.execute("""
-CREATE TABLE IF NOT EXISTS driver_analyses (driver_id INTEGER PRIMARY KEY NOT NULL, efficiency TEXT NOT NULL, payout REAL NOT NULL, bonus REAL NOT NULL);
+CREATE TABLE IF NOT EXISTS driver_analyses (driver_id INTEGER PRIMARY KEY NOT NULL, efficiency TEXT NOT NULL, inefficiencyReason TEXT, payout REAL NOT NULL, bonus REAL NOT NULL);
 """)
 
 
@@ -41,7 +41,7 @@ def get_drivers(limit=250) -> list[sqlite3.Row]:
     return cursor.fetchall()
 
 
-def insert_analysis_row(driver_id: int, efficiency: str, payout: float, bonus: float):
+def insert_analysis_row(driver_id: int, efficiency: str, inefficiencyReason: str, payout: float, bonus: float):
     # TODO: Implement a function that inserts a row with your overall analysis details into the table 'driver_analyses' (that includes their efficiency, payout and bonus)
     pass  # <- delete me
 
