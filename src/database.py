@@ -41,9 +41,23 @@ def get_drivers(limit=250) -> list[sqlite3.Row]:
     return cursor.fetchall()
 
 
-def insert_analysis_row(driver_id: int, efficiency: str, inefficiencyReason: str, payout: float, bonus: float):
-    # TODO: Implement a function that inserts a row with your overall analysis details into the table 'driver_analyses' (that includes their efficiency, payout and bonus)
-    pass  # <- delete me
+def insert_analysis_row(driver_id, efficiency, inefficiencyReason, payout, bonus, total_payment, database_path):
+
+    conn = sqlite3.connect(database_path)
+    cursor = conn.cursor()
+
+
+    insert_query = """
+    INSERT INTO driver_analyses (driver_id, averageSpeed, inefficiencyReason, payout, bonus)
+    VALUES (?, ?, ?, ?, ?)
+    """
+
+
+    cursor.execute(insert_query, (driver_id, efficiency, inefficiencyReason, payout, bonus))
+
+
+    conn.commit()
+    conn.close()
 
 
 conn.close()
