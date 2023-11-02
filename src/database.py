@@ -8,7 +8,7 @@ conn.row_factory = sqlite3.Row
 cursor = conn.cursor()
 
 cursor.execute("""
-CREATE TABLE IF NOT EXISTS driver_analyses (driver_id INTEGER PRIMARY KEY NOT NULL, efficiency TEXT NOT NULL, inefficiencyReason TEXT, payout REAL NOT NULL, bonus REAL NOT NULL);
+CREATE TABLE IF NOT EXISTS driver_analyses (driver_id INTEGER PRIMARY KEY NOT NULL, averageSpeed REAL NOT NULL, inefficiencyReason TEXT, payout REAL NOT NULL, bonus REAL NOT NULL);
 """)
 
 
